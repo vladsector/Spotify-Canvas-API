@@ -107,7 +107,7 @@ This project is licensed under the MIT license. see [LICENSE](https://github.com
 
 ---
 
-## Contact
+## Contacts of the main developer
 
 Telegram: [@paxsenix0](https://t.me/paxsenix0)
 
