@@ -61,7 +61,7 @@ http://localhost:3000/api/canvas?trackId=3OHfY25tqY28d16oZczHc8&sp_dc=your_sp_dc
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/Paxsenix0/Spotify-Canvas-API.git
+git clone https://github.com/vladsector/Spotify-Canvas-API.git
 cd Spotify-Canvas-API
 ```
 
@@ -84,7 +84,7 @@ The API will now be running at `http://localhost:3000`.
 
 You can deploy instantly with Vercel:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FPaxsenix0%2FSpotify-Canvas-API%2Ftree%2Fmain&project-name=Spotify-Canvas-API&repository-name=Spotify-Canvas-API&redirect-url=https%3A%2F%2Fgithub.com%2FPaxsenix0%2FSpotify-Canvas-API)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvladsector%2FSpotify-Canvas-API%2Ftree%2Fmain&project-name=Spotify-Canvas-API&repository-name=Spotify-Canvas-API&redirect-url=https%3A%2F%2Fgithub.com%2Fvladsector%2FSpotify-Canvas-API)
 
 ---
 
