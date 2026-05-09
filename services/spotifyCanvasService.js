@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { getToken } from './spotifyAuthService.js';
 
-export async function getCanvases(trackUri) {
+export async function getCanvases(trackUri, sp_dc) {
   const { CanvasRequest, CanvasResponse } = (await import('../proto/_canvas_pb.cjs')).default;
   
   try {
-    const accessToken = await getToken();
+    const accessToken = await getToken(sp_dc);
 
     const canvasRequest = new CanvasRequest();
     const track = new CanvasRequest.Track();

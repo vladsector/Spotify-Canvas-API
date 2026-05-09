@@ -3,7 +3,7 @@
 Unofficial API to fetch Spotify **Canvas video data** (the looping visual videos that appear behind songs on mobile).  
 
 > [!WARNING]  
-> This project uses undocumented endpoints and may violate [Spotify's Terms of Service](https://www.spotify.com/legal/end-user-agreement/). Use at your own risk.
+> This project uses undocumented endpoints and may violate [Spotify's Terms of Service](https.www.spotify.com/legal/end-user-agreement/). Use at your own risk.
 
 ---
 
@@ -19,9 +19,18 @@ Unofficial API to fetch Spotify **Canvas video data** (the looping visual videos
 
 ### GET `/api/canvas`
 
+To get the canvas data, you need to provide a track ID and your `sp_dc` cookie.
+
 ```bash
-https://localhost:3000/api/canvas?trackId=3OHfY25tqY28d16oZczHc8
+http://localhost:3000/api/canvas?trackId=3OHfY25tqY28d16oZczHc8&sp_dc=your_sp_dc_cookie_here
 ```
+
+### How to get your `sp_dc` cookie:
+1. Open your browser and go to [open.spotify.com](https://open.spotify.com).
+2. Open the developer tools (usually by pressing `F12` or `Ctrl+Shift+I`).
+3. Go to the "Application" (or "Storage") tab.
+4. Find the "Cookies" section and click on the `open.spotify.com` domain.
+5. Look for a cookie named `sp_dc`. Copy its value.
 
 ### Response:
 ```json
@@ -62,17 +71,12 @@ cd Spotify-Canvas-API
 npm install
 ```
 
-### 3. Set Required Environment Variable
-
-You must supply your sp_dc cookie from a logged-in Spotify session.
-
-Create a .env file in the root:
-
+### 3. Start the server
 ```bash
-SP_DC=your_sp_dc_cookie_here
+npm start
 ```
 
-> This cookie is used to generate an access token to authenticate requests.
+The API will now be running at `http://localhost:3000`.
 
 ---
 
@@ -80,7 +84,7 @@ SP_DC=your_sp_dc_cookie_here
 
 You can deploy instantly with Vercel:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FPaxsenix0%2FSpotify-Canvas-API%2Ftree%2Fmain&project-name=Spotify-Canvas-API&repository-name=Spotify-Canvas-API&env=SP_DC&envDescription=SP_DC%20is%20needed%20for%20this%20for%20authentication%20to%20be%20working%20fine&envLink=https%3A%2F%2Fwww.spotify.com%2F&redirect-url=https%3A%2F%2Fgithub.com%2FPaxsenix0%2FSpotify-Canvas-API)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FPaxsenix0%2FSpotify-Canvas-API%2Ftree%2Fmain&project-name=Spotify-Canvas-API&repository-name=Spotify-Canvas-API&redirect-url=https%3A%2F%2Fgithub.com%2FPaxsenix0%2FSpotify-Canvas-API)
 
 ---
 

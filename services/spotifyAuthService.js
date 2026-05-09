@@ -1,10 +1,6 @@
 import axios from "axios";
 import * as OTPAuth from "otpauth";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const SP_DC = process.env.SP_DC;
 const SECRETS_URL = "https://raw.githubusercontent.com/xyloflake/spot-secrets-go/refs/heads/main/secrets/secretDict.json";
 
 // Global variables to store the current TOTP configuration
@@ -110,13 +106,13 @@ function useFallbackSecret() {
   console.log('Using fallback TOTP secret');
 }
 
-export async function getToken(reason = "init", productType = "mobile-web-player") {
+export async function getToken(sp_dc, reason = "init", productType = "mobile-web-player") {
   // Ensure we have a TOTP instance
   if (!currentTotp) {
     await initializeTOTPSecrets();
   }
 
-  const payload = await generateAuthPayload(reason, productType);
+  const payload = await generateAuthPayload(sp_dc, reason, productType);
 
   const url = new URL("https://open.spotify.com/api/token");
   Object.entries(payload).forEach(([key, value]) => url.searchParams.append(key, value));
@@ -126,16 +122,16 @@ export async function getToken(reason = "init", productType = "mobile-web-player
       'User-Agent': userAgent(),
       'Origin': 'https://open.spotify.com/',
       'Referer': 'https://open.spotify.com/',
-      'Cookie': `sp_dc=${SP_DC}`,
+      'Cookie': `sp_dc=${sp_dc}`,
     },
   });
 
   return response.data?.accessToken;
 }
 
-async function generateAuthPayload(reason, productType) {
+async function generateAuthPayload(sp_dc, reason, productType) {
   const localTime = Date.now();
-  const serverTime = await getServerTime();
+  const serverTime = await getServerTime(sp_dc);
 
   return {
     reason,
@@ -146,14 +142,14 @@ async function generateAuthPayload(reason, productType) {
   };
 }
 
-async function getServerTime() {
+async function getServerTime(sp_dc) {
   try {
     const { data } = await axios.get("https://open.spotify.com/api/server-time", {
       headers: {
         'User-Agent': userAgent(),
         'Origin': 'https://open.spotify.com/',
         'Referer': 'https://open.spotify.com/',
-        'Cookie': `sp_dc=${SP_DC}`,
+        'Cookie': `sp_dc=${sp_dc}`,
       },
     });
 
